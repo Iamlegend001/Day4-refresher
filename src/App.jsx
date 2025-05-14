@@ -1,54 +1,35 @@
 import React from "react";
 import { useState } from "react";
+import Create from "./Components/Create";
+import Read from "./Components/Read";
 
 const App = () => {
   const [todos, setTodos] = useState([
     { id: 1, title: "sexy", isCompleted: false },
   ]);
 
-  const [title, settitle] = useState("");
-  const [complete, setcomplete] = useState(false)
-  const [gender, setgender] = useState("male")
+  console.log(todos);
+
   return (
-    <div>
-      <h1>Create task</h1>
-      <form action="">
-        <input
-          onChange={(e) => settitle(e.target.value)}
-          value={title}
-          type="text"
-          placeholder="title"
-        />
-        <br />
-        <input
-          onChange={(e) => setcomplete(e.target.checked)}
-          checked={complete}
-          type="checkbox"
-        />
-        Completed
-        <br />
-        <br />
-        <br />
-        <input
-          onChange={(e) => setgender(e.target.value)}
-          checked = {gender == "male" && true}
-          type="radio"
-          value="male"
-        />
-        male
-        <input
-          onChange={(e) => setgender(e.target.value)}
-          checked = {gender == "female" && true}
-          type="radio"
-          value="female"
-        />
-        female
-        <br />
-        <br />
-        <br />
-        <br />
-        <button>Submit</button>
-      </form>
+    <div className="min-h-screen bg-gray-100 py-8">
+      <div className="container mx-auto px-4">
+        <header className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">
+            Task Manager
+          </h1>
+          <p className="text-gray-600">Organize your tasks efficiently</p>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <Create todos={todos} setTodos={setTodos} />
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <Read todos={todos} setTodos={setTodos} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
