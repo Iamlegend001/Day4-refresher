@@ -8,6 +8,10 @@ const App = () => {
     { id: 1, title: "sexy", isCompleted: false },
   ]);
 
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   console.log(todos);
 
   return (
@@ -26,7 +30,7 @@ const App = () => {
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <Read todos={todos} setTodos={setTodos} />
+            <Read todos={todos} setTodos={setTodos} onDelete={deleteTodo} />
           </div>
         </div>
       </div>
