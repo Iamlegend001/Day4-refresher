@@ -15,21 +15,19 @@ const App = () => {
   console.log(todos);
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className="min-h-screen bg-gray-900 py-8">
       <div className="container mx-auto px-4">
         <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            Task Manager
-          </h1>
-          <p className="text-gray-600">Organize your tasks efficiently</p>
+          <h1 className="text-4xl font-bold text-white mb-2">Task Manager</h1>
+          <p className="text-gray-400">Organize your tasks efficiently</p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
             <Create todos={todos} setTodos={setTodos} />
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
             <Read todos={todos} setTodos={setTodos} onDelete={deleteTodo} />
           </div>
         </div>
