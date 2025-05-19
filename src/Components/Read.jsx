@@ -1,40 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from "react-toastify";
+import { TodoContext } from "./TodoContext";
 
-const Read = (props) => {
-  const todos = props.todos;
-  const setTodos = props.setTodos;
+const Read = () => {
+  const { todos, setTodos } = useContext(TodoContext);
+
   const deletehandler = (id) => {
     const filteredTodos = todos.filter((todo) => todo.id !== id);
     setTodos(filteredTodos);
-    toast.error("todo Deleted");
+    toast.error("🗑️ Task Deleted");
   };
-  const renderTodos = todos.map((todo) => {
-    return (
-      <li
-        key={todo.id}
-        className="flex items-center justify-between p-4 mb-2 bg-gray-700 rounded-lg shadow hover:shadow-md transition-shadow duration-200 border border-gray-600"
+
+  const renderTodos = todos.map((todo) => (
+    <li
+      key={todo.id}
+      className="flex items-center justify-between px-5 py-4 bg-black/40 border border-gray-700 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 backdrop-blur-sm"
+    >
+      <span className="text-white font-medium tracking-wide">{todo.title}</span>
+      <button
+        onClick={() => deletehandler(todo.id)}
+        className="ml-4 px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-red-500 via-pink-600 to-purple-600 rounded-lg hover:from-red-600 hover:via-pink-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-red-500/40"
       >
-        <span className="text-gray-200">{todo.title}</span>
-        <button
-          onClick={() => deletehandler(todo.id)}
-          className="ml-4 px-3 py-1 text-sm text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-800"
-        >
-          Delete
-        </button>
-      </li>
-    );
-  });
+        Delete
+      </button>
+    </li>
+  ));
 
   return (
     <div className="max-w-md mx-auto p-6">
-      <h1 className="text-2xl font-bold text-white mb-6">Pending Tasks</h1>
+      <h1 className="text-3xl font-semibold text-white mb-6 tracking-wide">
+        Pending Tasks
+      </h1>
       {todos.length === 0 ? (
         <p className="text-gray-400 text-center">
-          No tasks yet. Add some tasks to get started!
+          No tasks yet. Add some to get started!
         </p>
       ) : (
-        <ul className="space-y-2">{renderTodos}</ul>
+        <ul className="space-y-4">{renderTodos}</ul>
       )}
     </div>
   );

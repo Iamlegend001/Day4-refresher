@@ -7,9 +7,12 @@ import Wrapper from "./Wrapper.jsx";
 
 createRoot(document.getElementById("root")).render(
   // <>
-  //   <App />
-  //   <ToastContainer  position="top-center"/>
+  //
   // </>
 
-  <Wrapper App ={<App/>}/>
+  // <Wrapper App ={<App/>}/>
+  <Wrapper>
+    <App />
+    <ToastContainer  position="top-center"/>
+  </Wrapper>
 );
